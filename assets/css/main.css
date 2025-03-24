@@ -1,0 +1,31 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap");
+
+body {
+  font-family: "Manrope", sans-serif;
+  font-optical-sizing: auto;
+}
+
+.custom-otp-input {
+  width: 68px;
+  height: 68px;
+  font-size: 32px;
+  appearance: none;
+  text-align: center;
+  transition: all 0.2s;
+  font-weight: 900;
+  border: 1px solid var(--p-inputtext-border-color);
+  background: transparent;
+  outline-offset: -2px;
+  outline-color: transparent;
+  transition: outline-color 0.3s;
+  border-radius: 12px;
+  margin: 8px;
+  color: var(--p-inputtext-color);
+   border-style: solid;
+    border-color: var(--p-inputtext-border-color);
+    border-width: 1px;
+}
+
+.custom-otp-input:focus {
+  outline: 1px solid var(--p-focus-ring-color);
+}
