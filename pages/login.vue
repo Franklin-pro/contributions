@@ -122,7 +122,7 @@ const onSubmit = () => {
     } else {
       alert("Login failed")
     }
-    console.log("Form submitted!", formState);
+    console.log("Form submitted!!", formState);
   }
 };
 </script>
