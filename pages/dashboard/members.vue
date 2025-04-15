@@ -1,11 +1,14 @@
 <template>
   <div>
-    <Seasons/>
+    MEMBERS
   </div>
 </template>
 
 <script lang="ts" setup>
-import Seasons from '~/components/Season.vue';
+definePageMeta({
+  layout: "admin",
+  middleware:'auth'
+});
 </script>
 
 <style>

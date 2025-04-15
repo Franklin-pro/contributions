@@ -1,11 +1,14 @@
 <template>
   <div>
-    <Contributions/>
+    REPORTS
   </div>
 </template>
 
 <script lang="ts" setup>
-import Contributions from "~/components/Contributions.vue";
+definePageMeta({
+  layout: "admin",
+  middleware:'auth'
+});
 </script>
 
 <style>

@@ -1,11 +1,14 @@
 <template>
   <div>
-    <Members/>
+    Dashboard
   </div>
 </template>
 
 <script lang="ts" setup>
-import Members from '../components/Members.vue'
+definePageMeta({
+  layout: "admin",
+  middleware:'auth'
+});
 </script>
 
 <style>

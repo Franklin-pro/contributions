@@ -1,7 +1,10 @@
 <template>
      <div class="flex items-center justify-center h-screen bg-gray-100">
       <div class="bg-white p-8 rounded-xl shadow-md w-full max-w-md">
-        <h2 class="text-2xl font-bold mb-6 text-center">Login</h2>
+        <div class="flex flex-col items-center justify-center">   
+          <img src="/images/tuimizane_logo.png" class="my-4 h-48" />
+        <h2 class="text-xl font-light mb-6 text-center"> Please sign in to your account.</h2> </div>
+     
 
         <form @submit.prevent="loginAccount(state.username, state.password)" class="space-y-4">
           <FloatLabel variant="in">
@@ -47,8 +50,8 @@ const schema = object({
 type Schema = InferType<typeof schema>;
 const show = ref(false);
 const state = reactive({
-  username: "",
-  password: "",
+  username: "admin@tuimizanebusiness.com",
+  password: "password123",
 });
 
 const showAlertError = ref(false);
