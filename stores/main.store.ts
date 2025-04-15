@@ -14,6 +14,8 @@ export const useMainStore = defineStore('myMainStore', () => {
     texts: computed(() => t('christmas_at_greccio_texts'))
   })
   const deleteModal = ref(false)
+  const memberDrawer = ref(false)
+  const setMemberDrawer = (data: boolean) => (memberDrawer.value = data)
   const setDeleteModal = (value: boolean) => {
     deleteModal.value = value
   }
@@ -33,7 +35,9 @@ export const useMainStore = defineStore('myMainStore', () => {
     setDeleteModal,
     isMobileMenuOpen,
     setIsMobileMenuOpen,
-    toggleMobileMenu
+    toggleMobileMenu,
+    setMemberDrawer,
+    memberDrawer
   }
 })
 

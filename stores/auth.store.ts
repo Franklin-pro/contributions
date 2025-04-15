@@ -37,8 +37,9 @@ export const useAuthStore = defineStore('auth', () => {
   const setUser = (userData?: User) => (user.value = userData)
   const setLoading = (data: boolean) => (loading.value = data)
   const setToken = (data?: string) => (token.value = data)
-  const router = useRouter() // Get router instance
+  const users = ref([])
   const isLoggedIn = computed(() => !!token.value)
+  const setUsers = (data: any) => (users.value = data)
 
   const initializeAuth = () => {
     const savedToken = localStorage.getItem('token')
@@ -54,6 +55,16 @@ export const useAuthStore = defineStore('auth', () => {
       }
     }
   }
+
+  const getHeaders = () => {
+    const headers: Record<string, string> = {
+      'Content-Type': 'application/json',
+    };
+    if (isLoggedIn.value && token.value) {
+      headers['Authorization'] = `${token.value}`;
+    }
+    return headers;
+  };
 
   const login = async (credentials: any) => {
     setLoading(true);
@@ -99,7 +110,7 @@ export const useAuthStore = defineStore('auth', () => {
           console.warn('Unable to access localStorage:', storageError);
           // Continue with in-memory authentication only
         }
-        navigateTo('/dashboard');
+        navigateTo('/dashboard/home');
         return {
           success: true,
           message: message || 'Login successful',
@@ -196,6 +207,22 @@ export const useAuthStore = defineStore('auth', () => {
     window.location.href = '/auth';
   };
 
+  const getUsers = async () => {
+    setLoading(true);
+    try {
+      const res = await fetch(`${baseUrl}/auth/users`, {
+        headers: getHeaders()
+      });
+      if (!res.ok) throw new Error(`HTTP error! Status: ${res.status}`);
+      const data = await res.json();
+      setUsers(data.data);
+    } catch (error) {
+      console.error("Failed to fetch seasons:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return {
     token,
     user,
@@ -206,6 +233,7 @@ export const useAuthStore = defineStore('auth', () => {
     setLoading,
     setToken,
     loading,
-    initializeAuth
+    initializeAuth,
+    getUsers,users,setUsers
   }
 })
