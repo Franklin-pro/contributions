@@ -74,7 +74,7 @@ export const useAuthStore = defineStore('auth', () => {
       const controller = new AbortController();
       const timeoutId = setTimeout(() => controller.abort(), 15000); // 15 second timeout
 
-      const response = await fetch(`${baseUrl}/auth/login`, {
+      const response = await fetch(`${baseUrl}/api/auth/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -168,7 +168,7 @@ export const useAuthStore = defineStore('auth', () => {
       const currentToken = localStorage.getItem('token');
       if (!currentToken) return;
 
-      const response = await fetch(`${baseUrl}/auth/refresh`, {
+      const response = await fetch(`${baseUrl}/api/auth/refresh`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -210,7 +210,7 @@ export const useAuthStore = defineStore('auth', () => {
   const getUsers = async () => {
     setLoading(true);
     try {
-      const res = await fetch(`${baseUrl}/auth/users`, {
+      const res = await fetch(`${baseUrl}/api/auth/users`, {
         headers: getHeaders()
       });
       if (!res.ok) throw new Error(`HTTP error! Status: ${res.status}`);
